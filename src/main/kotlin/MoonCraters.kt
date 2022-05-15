@@ -1,3 +1,7 @@
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileReader
+
 var COUNTOFCRATERS = 0
 
 
@@ -30,22 +34,37 @@ fun checking(map: Array<Array<Int>>, row: Int, column: Int): Boolean {
     var row = row
     var column = column
 
-    if (row == -1 || column == -1 || rowSize == map[0].size+1 || columSize == map.size+1) {
+    if (row == -1 || column == -1 || rowSize == map[0].size + 1 || columSize == map.size + 1) {
         return false
     }
 
 
     if (map[row][column] == 1) {
         map[row][column] = 0
-        checking(map, row+1, column)
-        checking(map, row, column+1)
-        checking(map, row-1, column)
-        checking(map, row, column-1)
+        checking(map, row + 1, column)
+        checking(map, row, column + 1)
+        checking(map, row - 1, column)
+        checking(map, row, column - 1)
     } else {
         return false
     }
     return true
+}
 
 
+fun readFile(): MutableList<MutableList<Int>> {
+    val file = File("craters.txt")
+    val bufferText = BufferedReader(FileReader(file))
+    val arrayOfArray = mutableListOf<MutableList<Int>>()
+    var line: String
+    while (true) {
+        line = bufferText.readLine() ?: break
+        val array = mutableListOf<Int>()
+        for (element in line) {
+            array.add(element.digitToInt())
+        }
+        arrayOfArray.add(array)
+    }
+    return arrayOfArray
 
 }
