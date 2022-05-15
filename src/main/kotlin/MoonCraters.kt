@@ -7,7 +7,7 @@ fun main() {
 }
 
 
-fun readFile() {
+fun readFile(): MutableList<MutableList<Int>> {
     val file = File("craters.txt")
     val bufferText = BufferedReader(FileReader(file))
     val arrayOfArray = mutableListOf<MutableList<Int>>()
@@ -20,4 +20,5 @@ fun readFile() {
         }
         arrayOfArray.add(array)
     }
+    return arrayOfArray
 }
